@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Just Puzzle Game</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="css/grayscale.css" rel="stylesheet">
+
+
+	<!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+					<i class="fa fa-bars"></i>
+				</button>
+				<a class="navbar-brand page-scroll" href="#page-top">
+					<i class="fa fa-play-circle"></i>  <span class="light">Just</span> Puzzle
+				</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+				<ul class="nav navbar-nav">
+					<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+					<li class="hidden">
+						<a href="#page-top"></a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#about">About</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#play">Play</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#contact">Contact</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+	<!-- Intro Header -->
+	<header class="intro">
+		<div class="intro-body">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<h1 class="brand-heading" style="text-shadow: 3px 2px #333;">Just Puzzle</h1>
+						<p class="intro-text" style="text-shadow: 1px 1px #333;">A game of logic built in JavaScript.</p>
+						<a href="#about" class="btn btn-circle page-scroll">
+							<i class="fa fa-angle-double-down animated"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- About Section -->
+	<section id="about" class="container content-section text-center">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h2>About Just Puzzle</h2>
+				<p class="text-left">
+					Just Puzzle is a browser game where you can spend your spare time solving puzzled images. You can choose from 2 options:
+					<ul class="text-left">
+						<li>pick a image from the application gallery or</li>
+						<li>uploading your own image.</li>
+					</ul>
+				</p>
+				<p class="text-left">You can upload your own image, or choose one from our gallery.</p>
+				<p class="text-left">Just Puzzle has 5 levels of difficulty you can choose (from separation 3x3 per row and column to 7x7).</p>
+				<p class="text-left">After you choose image and level, press the SET button.</p>
+				<p class="text-left">
+					Ones image is shuffled, you can drag and drop the pieces in order to solve the puzzle.
+				</p>
+				<p class="text-left">
+					Just Puzzle is running on Chrome, Firefox, IE, Opera or Safari.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Play Section -->
+	<section id="play" class="download-section text-center">
+		<h2>Just Puzzle</h2>
+		<!--<div id="timer-div"><span id="timer"></span></div>-->
+
+		<canvas id="puzzle-canvas" width="600" height="500"></canvas>
+		<br />
+		<br />
+		<ul class="list-inline banner-social-buttons" id="puzzle-options">
+			<li id="my-upload-img">
+				<label class="btn btn-default btn-lg" for="upload-image">
+					<input id="upload-image" type="file" style="display: none;">
+					Upload own image
+				</label>
+			</li>
+			<li>
+				<button id="btn-gallery" class="btn btn-default btn-lg">Choose from gallery</button>
+			</li>
+			<li>
+				<select id="level" class="btn btn-default btn-lg">
+					<option value="3">Level: easy</option>
+					<option value="4" selected="selected">Level: medium</option>
+					<option value="5">Level: normal</option>
+					<option value="6">Level: hard</option>
+					<option value="7">Level: profi</option>
+				</select>
+			</li>
+		</ul>
+		<br />
+		<!-- Start -->
+
+		<div id="gallery-container" class="container" style="display: none;">
+			<div class="col-md-12">
+				<!--<div class="well">-->
+				<div id="gallery-carousel" class="carousel slide" data-pause="">
+					<!-- Carousel items -->
+					<!--/carousel-inner-->
+					<a class="left carousel-control" href="#gallery-carousel" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#gallery-carousel" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+					<!--<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>-->
+				</div>
+				<!--/myCarousel-->
+			</div>
+			<!--/well-->
+			<!--/div>-->
+		</div>
+		<br />
+
+		<ul class="list-inline banner-social-buttons">
+			<li>
+				<button id="set-options" class="btn btn-default btn-lg">Set</button>
+			</li>
+		</ul>
+		<img id="puzzle-image" src="" alt="this is the image for the puzzle" style="display: none;" />
+	</section>
+
+	<!-- Contact Section -->
+	<section id="contact" class="container content-section text-center">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h2>Contact Me</h2>
+				<p>Feel free to email me to provide some feedback, give me suggestions for new features, or to just say hello!</p>
+				<p>
+					<a href="mailto:tzigarov@gmail.com">tzigarov@gmail.com</a>
+				</p>
+				<ul class="list-inline banner-social-buttons">
+					<li>
+						<a href="https://www.facebook.com/tzigy" class="btn btn-default btn-lg">
+							<i class="fa fa-facebook fa-fw"></i>
+							<span class="network-name">Facebook</span>
+						</a>
+					</li>
+					<li>
+						<a href="https://github.com/tzigy" class="btn btn-default btn-lg">
+							<i class="fa fa-github fa-fw"></i>
+							<span class="network-name">Github</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container text-center">
+			<p>Copyright &copy; Hristo Tzigarov at Telerik Academy 2015/16</p>
+		</div>
+	</footer>
+
+	<!-- jQuery -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="bower_components/jquery.easing/js/jquery.easing.min.js"></script>
+
+	<!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>-->
+	<!-- Custom Theme JavaScript -->
+	<script src="js/grayscale.js"></script>
+	<script src="js/models/field.js"></script>
+	<script src="js/models/piece.js"></script>
+	<script src="js/models/puzzle.js"></script>
+	<script src="js/gallery.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controls.js"></script>
+	<script>
+		console.log(models);
+		models.init();
+	</script>
+
+</body>
+
+</html>
